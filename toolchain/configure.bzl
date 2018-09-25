@@ -142,6 +142,7 @@ def _llvm_toolchain_impl(rctx):
     rctx.symlink("/usr/bin/ld", "bin/ld")
     if rctx.os.name == "linux":
         rctx.symlink("/usr/bin/ld.gold", "bin/ld.gold")
+        rctx.symlink("/usr/bin/ld.lld", "bin/ld.lld")
     else:
         # Add dummy file for non-linux so we don't have to put conditional logic in BUILD.
         rctx.file("bin/ld.gold")
