@@ -37,8 +37,8 @@ toolchain {
   supports_fission: false
   supports_interface_shared_objects: false
   supports_normalizing_ar: false
-  supports_start_end_lib: true
-  supports_gold_linker: true
+  supports_start_end_lib: false
+  supports_gold_linker: false
   target_libc: "local"
   target_cpu: "k8"
   target_system_name: "local"
@@ -79,9 +79,10 @@ toolchain {
 
   # Linker
   linker_flag: "-lm"
-  linker_flag: "-fuse-ld=gold"
+  linker_flag: "-fuse-ld=lld"
   linker_flag: "-Wl,--build-id=md5"
   linker_flag: "-Wl,--hash-style=gnu"
+  linker_flag: "-Wl,-z,relro,-z,now"
 
   # Syntax for include directories is mentioned at:
   # https://github.com/bazelbuild/bazel/blob/d61a185de8582d29dda7525bb04d8ffc5be3bd11/src/main/java/com/google/devtools/build/lib/rules/cpp/CcToolchain.java#L125
@@ -94,7 +95,7 @@ toolchain {
   objcopy_embed_flag: "-I"
   objcopy_embed_flag: "binary"
 
-  tool_path {name: "ld" path: "%{tools_path_prefix}bin/ld.gold" }  # TODO: Switch to lld after https://reviews.llvm.org/D41978
+  tool_path {name: "ld" path: "%{tools_path_prefix}bin/ld.lld" }  # TODO: Switch to lld after https://reviews.llvm.org/D41978
   tool_path {name: "cpp" path: "%{tools_path_prefix}bin/clang-cpp" }
   tool_path {name: "dwp" path: "%{tools_path_prefix}bin/llvm-dwp" }
   tool_path {name: "gcov" path: "%{tools_path_prefix}bin/llvm-profdata" }
