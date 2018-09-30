@@ -29,7 +29,7 @@ set -eux
 
 INSTALL_NAME_TOOL="/usr/bin/install_name_tool"
 
-LIBS="libclang_rt.asan_osx_dynamic"
+LIBS="clang_rt.asan_osx_dynamic"
 LIB_DIRS=
 RPATHS=
 OUTPUT=
