@@ -265,7 +265,7 @@ toolchain {
   }
 
   feature {
-    name: 'runtime_support_flags'
+    name: 'runtime_root_flags'
     flag_set {
       expand_if_all_available: 'output_execpath'
       action: 'c++-link-executable'
