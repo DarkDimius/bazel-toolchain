@@ -265,6 +265,20 @@ toolchain {
   }
 
   feature {
+    name: 'runtime_support_flags'
+    flag_set {
+      expand_if_all_available: 'output_execpath'
+      action: 'c++-link-executable'
+      action: 'c++-link-dynamic-library'
+      action: "c++-link-nodeps-dynamic-library"
+      action: "c++-link-static-library"
+      flag_group {
+        flag: '-Wl,-rpath,%{output_execpath}/external/llvm_toolchain//lib/clang/7.0.0/lib/darwin'
+      }
+    }
+  }
+
+  feature {
     name: 'coverage'
     provides: 'profile'
     flag_set {
