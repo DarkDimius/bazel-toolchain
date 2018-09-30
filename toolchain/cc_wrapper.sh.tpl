@@ -25,11 +25,11 @@
 # See https://blogs.oracle.com/dipol/entry/dynamic_libraries_rpath_and_mac
 # on how to set those paths for Mach-O binaries.
 #
-set -eu
+set -eux
 
 INSTALL_NAME_TOOL="/usr/bin/install_name_tool"
 
-LIBS=
+LIBS="libclang_rt.asan_osx_dynamic"
 LIB_DIRS=
 RPATHS=
 OUTPUT=
