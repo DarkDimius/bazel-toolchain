@@ -264,17 +264,40 @@ toolchain {
     }
   }
 
-  feature {
-    name: 'runtime_root_flags'
+feature {
+    name: "runtime_root_flags"
     flag_set {
-      expand_if_all_available: 'output_execpath'
-      action: 'c++-link-executable'
-      action: 'c++-link-dynamic-library'
+      action: "c++-link-executable"
+      action: "c++-link-dynamic-library"
       action: "c++-link-nodeps-dynamic-library"
       action: "c++-link-static-library"
       flag_group {
-        flag: '-Wl,-rpath,%{output_execpath}/external/llvm_toolchain//lib/clang/7.0.0/lib/darwin'
+        flag: "-Wl,-rpath,@loader_path/%{runtime_library_search_directories}"
+        iterate_over: "runtime_library_search_directories"
       }
+      expand_if_all_available: "runtime_library_search_directories"
+    }
+    flag_set {
+      action: "c++-link-executable"
+      action: "c++-link-dynamic-library"
+      action: "c++-link-nodeps-dynamic-library"
+      action: "c++-link-static-library"
+      flag_group {
+        flag: "%{runtime_root_flags}"
+        iterate_over: "runtime_root_flags"
+      }
+      expand_if_all_available: "runtime_root_flags"
+    }
+    flag_set {
+      action: "c++-link-executable"
+      action: "c++-link-dynamic-library"
+      action: "c++-link-nodeps-dynamic-library"
+      action: "c++-link-static-library"
+      flag_group {
+        flag: "%{runtime_root_entries}"
+        iterate_over: "runtime_root_entries"
+      }
+      expand_if_all_available: "runtime_root_entries"
     }
   }
 
