@@ -29,10 +29,10 @@ filegroup(
 cc_toolchain_suite(
     name = "toolchain",
     toolchains = {
-        "k8|clang": "clang-linux",
-        "darwin|clang": "clang-darwin",
-        "k8": "clang-linux",
-        "darwin": "clang-darwin",
+        "k8|clang": ":clang-linux",
+        "darwin|clang": ":clang-darwin",
+        "k8": ":clang-linux",
+        "darwin": ":clang-darwin",
     },
 )
 
