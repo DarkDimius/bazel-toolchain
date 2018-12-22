@@ -208,6 +208,7 @@ def conditional_cc_toolchain(name, cpu, darwin, absolute_paths = False):
     if absolute_paths:
         native.cc_toolchain(
             name = name,
+            toolchain_identifier = name,
             all_files = ":empty",
             compiler_files = ":empty",
             cpu = "k8",
@@ -226,6 +227,7 @@ def conditional_cc_toolchain(name, cpu, darwin, absolute_paths = False):
         native.filegroup(name = name + "-linker-files", srcs = [":linker_components"] + extra_files)
         native.cc_toolchain(
             name = name,
+            toolchain_identifier = name,
             all_files = name + "-all-files",
             compiler_files = name + "-compiler-files",
             cpu = "k8",
