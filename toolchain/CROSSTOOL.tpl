@@ -132,6 +132,10 @@ toolchain {
 
   linking_mode_flags { mode: DYNAMIC }
 
+  feature { name: 'header_modules' implies: 'use_header_modules' }
+  feature { name: 'module_maps' }
+  feature { name: 'use_header_modules' }
+
   feature {
     name: 'coverage'
     provides: 'profile'
